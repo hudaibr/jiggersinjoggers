@@ -1,8 +1,8 @@
 (function ($) {
     'use strict';
 
-    var form = $('#contact-form');
-    var formMessages = $('#form-messages');
+    var form = $('#contactForm');
+    var formMessages = $('#form-status');
 
     $(form).submit(async function (e) {
 
