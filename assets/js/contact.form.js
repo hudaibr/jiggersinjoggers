@@ -1,39 +1,67 @@
 (function ($) {
     'use strict';
-    // Get the form.
-    var form = $('#contact-form');
 
-    // Get the messages div.
+    var form = $('#contact-form');
     var formMessages = $('#form-messages');
 
-    // Set up an event listener for the contact form.
-    $(form).submit(function (e) {
-        e.preventDefault(); // Stop the default form submission
+    $(form).submit(async function (e) {
 
-        // Serialize the form data.
-        var formData = $(form).serialize();
+        e.preventDefault();
 
-        // Submit the form using AJAX.
-        $.ajax({
-            type: 'POST',
-            url: $(form).attr('action'),
-            data: formData
-        })
-        .done(function (response) {
-            // Update message styling
-            $(formMessages).removeClass('text-warning fw-bolder mt-2')
-                           .addClass('text-dark fw-bold mt-3 border py-2 px-3')
-                           .text(response);
-            
-            // Clear the form fields, excluding subject if not present
-            $('#name, #email, #message').val('');
-            $('#subject').length && $('#subject').val('');
-        })
-        .fail(function (data) {
-            // Update message styling
-            $(formMessages).addClass('text-warning fw-bolder mt-2')
-                           .removeClass('text-dark fw-bold mt-3 border py-2 px-3')
-                           .text(data.responseText || 'Oops! An error occurred and your message could not be sent.');
-        });
+        const payload = {
+            name: $('[name="name"]').val(),
+            email: $('[name="email"]').val(),
+            company: $('[name="company"]').val(),
+            website: $('[name="website"]').val(),
+            service: $('[name="service"]').val(),
+            budget: $('[name="budget"]').val(),
+            message: $('[name="message"]').val(),
+            website_check: $('[name="website_check"]').val()
+        };
+
+        try {
+
+            const response = await fetch(
+                'https://jiggers-contact-form.hudaib-riaz2627.workers.dev/',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                }
+            );
+
+            const result = await response.json();
+
+            if (result.success) {
+
+                $(formMessages)
+                    .removeClass('text-warning')
+                    .addClass('text-success fw-bold mt-3')
+                    .html('Thank you! Your message has been sent successfully.');
+
+                form[0].reset();
+
+            } else {
+
+                $(formMessages)
+                    .removeClass('text-success')
+                    .addClass('text-warning fw-bold mt-3')
+                    .html(result.error || 'Something went wrong.');
+
+            }
+
+        } catch (error) {
+
+            $(formMessages)
+                .removeClass('text-success')
+                .addClass('text-warning fw-bold mt-3')
+                .html('Unable to send message. Please try again.');
+
+            console.error(error);
+        }
+
     });
+
 })(jQuery);
