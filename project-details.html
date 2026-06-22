@@ -354,7 +354,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row g-4 mt-4">
+                        <div class="row g-4 mt-4" id="projectImages">
                             <div class="col-md-6">
                                 <div class="details-image">
                                     <img src="assets/img/case-studies/details-1.jpg" alt="img">
@@ -562,9 +562,138 @@
 <!--<< Main.js >>-->
 <script src="assets/js/main.js"></script>
 
+<script>
+const projects = [
+  {
+    title: "Building Online Visibility for a Wrestling Championship Belt Ecommerce Store",
+    tags: ["SEO", "Ecommerce", "Content", "Growth"],
+    client: "BeltTalks", year: "2025 - 2026", author: "SEO Team",
+    overview: "BeltTalks specializes in replica wrestling belts, championship belts, and custom-designed title belts. The objective was to strengthen online visibility, reach wrestling enthusiasts, and build a stronger digital presence in a highly niche market.",
+    overview2: "We implemented a combined SEO and social media strategy focused on improving discoverability while creating engaging content for wrestling fans and collectors. Content campaigns highlighted featured belts, custom creations, championship collections, and community-focused content designed to attract both collectors and wrestling enthusiasts.",
+    results: ["Improved online visibility for key product categories", "Stronger social media presence and brand recognition", "Better positioning for wrestling-related search terms"],
+    results2: ["Increased engagement from wrestling and collector communities", "Sustainable foundation for long-term digital growth", "SEO strategy & optimization"],
+    prog1: { label: "Search Visibility", pct: 85 }, prog2: { label: "Engagement", pct: 78 },
+    img1: "assets/img/case-studies/seo-03.jpg", img2: "assets/img/case-studies/seo-04.jpg"
+  },
+  {
+    title: "Bringing Alex's Character Concept to Life Through Digital Art & Animation",
+    tags: ["Gaming", "Character Design", "Animation", "Digital Art"],
+    client: "Alex", year: "2025 - 2026", author: "Design Team",
+    overview: "Alex had a rough character sketch with a clear vision but needed a polished, professional version suitable for use across Discord communities, social profiles, and content creation channels. The original concept lacked the detail, consistency, and motion needed to stand out in a competitive gaming environment.",
+    overview2: "Our design team transformed the initial sketch into a fully refined digital character while preserving the original personality and creative direction envisioned by the client. The process included concept refinement, character detailing, professional digital illustration, color development, animation design, and export optimization for Discord and social platforms.",
+    results: ["Custom Character Design", "High-Resolution Digital Artwork", "Animated Character Version"],
+    results2: ["Discord & Social Media Ready Assets", "Unique digital identity", "Professional gaming presence"],
+    prog1: { label: "Character Detail", pct: 98 }, prog2: { label: "Animation Quality", pct: 95 },
+    img1: "assets/img/case-studies/graphics-1.jpeg", img2: "assets/img/case-studies/graphics-2.jpeg", img3: "assets/img/case-studies/graphics-3.jpeg", img4: "assets/img/case-studies/graphics-4.jpeg"
+  },
+  {
+    title: "Growing a Personalized Jewelry Brand Through Strategic Social Media Marketing",
+    tags: ["Social Media", "Marketing", "Content", "Engagement"],
+    client: "The Custom Jewels", year: "2025 - 2026", author: "Marketing Team",
+    overview: "The Custom Jewels offers personalized jewelry including custom name necklaces, rings, bracelets, and other meaningful pieces. The challenge was creating consistent social media content that highlighted the emotional value of personalized jewelry while building brand awareness and customer engagement.",
+    overview2: "We developed a content strategy focused on showcasing product personalization, customer stories, gift-giving occasions, and visually engaging product presentations across Facebook and Instagram. Our team created branded content designed to highlight craftsmanship, customization options, and the unique sentimental value behind each piece.",
+    results: ["Stronger brand presence across social media platforms", "Improved content consistency and visual branding", "Increased audience engagement through product-focused campaigns"],
+    results2: ["Enhanced visibility for personalized jewelry collections", "Scalable social media foundation for future growth", "Community engagement growth"],
+    prog1: { label: "Brand Presence", pct: 92 }, prog2: { label: "Audience Engagement", pct: 88 },
+    img1: "assets/img/case-studies/marketing-03.jpg", img2: "assets/img/case-studies/marketing-04.jpg"
+  },
+  {
+    title: "PrintMakeTrim.com — Shopify Ecommerce Development",
+    tags: ["Shopify", "Ecommerce", "Development", "UX/UI"],
+    client: "PrintMakeTrim.com", year: "2025 - 2026", author: "Development Team",
+    overview: "PrintMakeTrim.com sells products by the meter, creating unique ordering and shipping requirements that standard Shopify functionality doesn't handle efficiently. We developed a customized Shopify experience including tailored product purchasing workflows, custom pricing displays, and a private application to support meter-based ordering requirements while maintaining a smooth customer experience.",
+    overview2: "Services provided: Shopify Store Setup, Custom Theme Development, UX/UI Improvements, Product Configuration, Private App Integration, and Performance Optimization.",
+    results: ["Streamlined purchasing process", "Improved customer experience", "Custom meter-based ordering workflow"],
+    results2: ["Scalable ecommerce infrastructure", "Mobile-friendly shopping experience", "Private app integration"],
+    prog1: { label: "Shopify Customization", pct: 100 }, prog2: { label: "UX Improvement", pct: 95 },
+    img1: "assets/img/case-studies/website-01.jpg", img2: "assets/img/case-studies/website-02.jpg"
+  },
+  {
+    title: "All Website Design — Agency Website & Lead Generation",
+    tags: ["Web Design", "Development", "Branding", "Conversion"],
+    client: "All Website Design", year: "2025 - 2026", author: "Design Team",
+    overview: "Create a professional online presence capable of presenting multiple digital services while maintaining a clear conversion path for prospective clients. Designed and developed a modern agency website focused on service presentation, lead generation, performance, and scalable infrastructure.",
+    overview2: "Services provided: Website Design, Website Development, Branding, Conversion Optimization, Contact Form Automation, and Cloudflare Deployment.",
+    results: ["Professional brand presence", "Optimized lead capture process", "Fast-loading cloud-hosted infrastructure"],
+    results2: ["Mobile-responsive design", "Scalable foundation for future growth", "Contact form automation"],
+    prog1: { label: "Lead Generation", pct: 90 }, prog2: { label: "Performance Score", pct: 98 },
+    img1: "assets/img/case-studies/website-03.jpg", img2: "assets/img/case-studies/website-04.jpg"
+  },
+  {
+    title: "Creating a Custom Game Character for Kitsubak",
+    tags: ["Gaming", "Character Design", "Concept Art", "Illustration"],
+    client: "Kitsubak", year: "2025 - 2026", author: "Art Team",
+    overview: "Kitsubak required an original character design for a game project. The objective was to create a visually distinctive character that aligned with the game's style while maintaining originality and strong visual appeal.",
+    overview2: "Starting from a blank canvas, our artists developed the character concept through sketching, refinement, and digital illustration. The project involved character concept development, sketch creation, design refinement, color exploration, professional digital rendering, and final production-ready artwork.",
+    results: ["Original Character Concept", "Hand-Sketched Design Process", "Fully Rendered Digital Artwork"],
+    results2: ["High-Resolution Production Files", "Balanced creativity & usability", "Game-ready visual asset"],
+    prog1: { label: "Originality", pct: 97 }, prog2: { label: "Art Quality", pct: 96 },
+    img1: "assets/img/case-studies/graphics-05.jpeg", img2: "assets/img/case-studies/graphics-06.jpeg", img3: "assets/img/case-studies/graphics-07.jpeg"
+  }
+];
 
+function getProjectId() {
+  const params = new URLSearchParams(window.location.search);
+  let id = parseInt(params.get('id')) || 1;
+  if (id < 1) id = 1; if (id > projects.length) id = projects.length;
+  return id;
+}
 
-   
+function loadProject(id) {
+  const p = projects[id - 1];
+  document.querySelector('.details-left h2').textContent = p.title;
+  const tagLinks = document.querySelectorAll('.post-cat a');
+  p.tags.forEach((tag, i) => { if (tagLinks[i]) tagLinks[i].textContent = tag; });
+  document.querySelector('.client-details li:nth-child(1) span').textContent = p.client;
+  document.querySelector('.client-details li:nth-child(2) span').textContent = p.year;
+  document.querySelector('.client-details li:nth-child(3) span').textContent = p.author;
+  const overviewPs = document.querySelectorAll('.project-details-content .row.g-4 p');
+  if (overviewPs[0]) overviewPs[0].textContent = p.overview;
+  if (overviewPs[1]) overviewPs[1].textContent = p.overview2;
+  const listItems = document.querySelectorAll('.list-items ul');
+  if (listItems[0]) {
+    const spans = listItems[0].querySelectorAll('span');
+    p.results.forEach((r, i) => { if (spans[i]) spans[i].textContent = r; });
+  }
+  if (listItems[1]) {
+    const spans = listItems[1].querySelectorAll('span');
+    p.results2.forEach((r, i) => { if (spans[i]) spans[i].textContent = r; });
+  }
+  const progTitles = document.querySelectorAll('.pro-head .title');
+  if (progTitles[0]) progTitles[0].textContent = p.prog1.label;
+  if (progTitles[1]) progTitles[1].textContent = p.prog2.label;
+  const progPoints = document.querySelectorAll('.pro-head .point');
+  if (progPoints[0]) progPoints[0].textContent = p.prog1.pct + '%';
+  if (progPoints[1]) progPoints[1].textContent = p.prog2.pct + '%';
+  const container = document.getElementById('projectImages');
+  container.innerHTML = '';
+  const imgs = [p.img1, p.img2, p.img3, p.img4].filter(Boolean);
+  const cols = imgs.length === 4 ? 'col-md-3' : imgs.length === 3 ? 'col-md-4' : 'col-md-6';
+  imgs.forEach(src => {
+    const div = document.createElement('div');
+    div.className = cols;
+    div.innerHTML = '<div class="details-image"><img src="' + src + '" alt="img"></div>';
+    container.appendChild(div);
+  });
+  history.replaceState(null, '', '?id=' + id);
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const id = getProjectId();
+  loadProject(id);
+  document.querySelector('.cmn-prev').addEventListener('click', function() {
+    let cur = getProjectId();
+    cur = cur > 1 ? cur - 1 : projects.length;
+    loadProject(cur);
+  });
+  document.querySelector('.cmn-next').addEventListener('click', function() {
+    let cur = getProjectId();
+    cur = cur < projects.length ? cur + 1 : 1;
+    loadProject(cur);
+  });
+});
+</script>
+
     </body>
 
 </html>
